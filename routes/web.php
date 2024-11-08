@@ -18,4 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('companies', \App\Http\Controllers\CompanyController::class);
     Route::resource('positions', \App\Http\Controllers\PositionController::class);
     Route::resource('invitations', \App\Http\Controllers\InvitationController::class);
+    Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+    Route::post('/tasks/{task}/assign', [\App\Http\Controllers\TaskController::class, 'assignTask'])->name('tasks.assign');
 });

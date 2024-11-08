@@ -9,7 +9,7 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Add Invitation</h1>
+                <h1>Add Task</h1>
             </div>
 
             <div class="section-body">
@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-between">
-                        <h2 class="section-title">Add New Invitation</h2>
+                        <h2 class="section-title">Add New Task</h2>
                     </div>
                 </div>
 
@@ -32,28 +32,20 @@
 
                             <div class="clearfix mb-3"></div>
 
-                            <form action="{{ route('invitations.store') }}" method="post" class="needs-validation" novalidate="">
+                            <form action="{{ route('tasks.store') }}" method="post" class="needs-validation" novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">Invited Email</label>
-                                    <select name="email" id="email" class="form-control">
-                                        <option value="">Select Email</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->email }}">{{ $user->email }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
-
                                 <div class="form-group">
-                                    <label for="position_id">Position</label>
-                                    <select id="position_id" name="position_id" class="form-control">
-                                        <option value="">Select Position</option>
-                                        @foreach ($positions as $position)
-                                            <option value="{{ $position->id }}">{{ $position->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="description">Description</label>
+                                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="due_date">Due Date</label>
+                                    <input type="date" class="form-control" id="due_date" name="due_date" required>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg float-right">Create</button>
                                 </div>

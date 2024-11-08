@@ -83,7 +83,7 @@
     <script>
         document.querySelectorAll('.confirm-delete').forEach(button => {
         button.addEventListener('click', function (event) {
-            if (confirm('Are you sure you want to delete this position?')) {
+            if (confirm('Are you sure you want to delete this invitation?')) {
                 const formId = event.target.closest('form').id;
                 document.getElementById(formId).submit();
             }

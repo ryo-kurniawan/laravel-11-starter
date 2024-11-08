@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\CompanyUserPosition;
 use App\Models\Invitation;
 use App\Models\Position;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InvitationController extends Controller
@@ -14,7 +16,8 @@ class InvitationController extends Controller
      */
     public function index()
     {
-        $company = Company::all()->where('owner_id', auth()->user()->id)->first();
+
+        $company = CompanyUserPosition::where('user_id', auth()->user()->id)->first()->company;
         $invitations = Invitation::all()->where('company_id', $company->id);
         return view('pages.invitations.index', compact('invitations', 'company'));
     }
@@ -24,8 +27,9 @@ class InvitationController extends Controller
      */
     public function create(Company $company)
     {
+        $users = User::where('role_id', '!=', 1)->get();
         $positions = Position::all();
-        return view('pages.invitations.create', compact('company', 'positions'));
+        return view('pages.invitations.create', compact('company', 'positions', 'users'));
     }
 
     /**
@@ -44,10 +48,15 @@ class InvitationController extends Controller
             'company_id' => $company->id,
             'email' => $request->email,
             'invited_by' => $inviter->id,
-            'status' => 'pending',
+            'status' => 'success',
             'position_id' => $request->position_id,
         ]);
-
+        $user = User::where('email', $request->email)->first();
+        CompanyUserPosition::create([
+            'company_id' => $company->id,
+            'user_id' => $user->id,
+            'position_id' => $request->position_id,
+        ]);
         return redirect()->route('invitations.index', $company)->with('success', 'Invitation sent successfully.');
     }
 
@@ -81,6 +90,8 @@ class InvitationController extends Controller
     public function destroy(Invitation $invitation)
     {
         $invitation->delete();
+        $user = User::where('email', $invitation->email)->first();
+        CompanyUserPosition::where('user_id', $user->id)->delete();
         return redirect()->route('invitations.index', $invitation->company)->with('success', 'Invitation deleted successfully.');
     }
 }
