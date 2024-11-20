@@ -39,7 +39,7 @@ class CompanyController extends Controller
 
         Company::create($request->all());
 
-        return redirect()->route('companies.index')->with('success', 'Company created successfully.');
+        return redirect()->route('companies.index')->with('success', 'Unit Destinasi created successfully.');
     }
 
     /**
@@ -69,7 +69,7 @@ class CompanyController extends Controller
 
         $company->update($request->all());
 
-        return redirect()->route('companies.index')->with('success', 'Company updated successfully.');
+        return redirect()->route('companies.index')->with('success', 'Unit Destinasi updated successfully.');
     }
 
     /**
@@ -78,6 +78,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
+        return redirect()->route('companies.index')->with('success', 'Unit Destinasi deleted successfully.');
     }
 }

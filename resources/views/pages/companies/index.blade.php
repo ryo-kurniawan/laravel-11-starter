@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'User')
+@section('title', 'Unit Destinasi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -9,7 +9,7 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Company</h1>
+                <h1>Unit Destinasi</h1>
             </div>
 
             <div class="section-body">
@@ -21,8 +21,8 @@
 
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-between">
-                        <h2 class="section-title">Company</h2>
-                <a href="{{ route('companies.create') }}" class="btn btn-primary">Add Company</a>
+                        <h2 class="section-title">Unit Destinasi</h2>
+                <a href="{{ route('companies.create') }}" class="btn btn-primary">Add Unit Destinasi</a>
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
     <script>
         document.querySelectorAll('.confirm-delete').forEach(button => {
         button.addEventListener('click', function (event) {
-            if (confirm('Are you sure you want to delete this company?')) {
+            if (confirm('Are you sure you want to delete this unit destinasi?')) {
                 const formId = event.target.closest('form').id;
                 document.getElementById(formId).submit();
             }

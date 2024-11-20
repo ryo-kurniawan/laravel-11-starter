@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit User')
+@section('title', 'Edit Unit Destinasi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -9,7 +9,7 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Company</h1>
+                <h1>Edit Unit Destinasi</h1>
             </div>
 
             <div class="section-body">
@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-12 d-flex align-items-center justify-content-between">
-                        <h2 class="section-title">Edit Company</h2>
+                        <h2 class="section-title">Edit Unit Destinasi</h2>
                     </div>
                 </div>
 
