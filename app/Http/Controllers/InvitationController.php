@@ -17,7 +17,11 @@ class InvitationController extends Controller
     public function index()
     {
 
-        $company = CompanyUserPosition::where('user_id', auth()->user()->id)->first()->company;
+        if (auth()->user()->role_id == 1) {
+            $company = Company::where('owner_id', auth()->user()->id)->first();
+        } else {
+            $company = CompanyUserPosition::where('user_id', auth()->user()->id)->first()->company;
+        }
         $invitations = Invitation::all()->where('company_id', $company->id);
         return view('pages.invitations.index', compact('invitations', 'company'));
     }
